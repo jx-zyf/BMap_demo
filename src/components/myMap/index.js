@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import { Input, message } from 'antd';
 import styles from './index.less';
 
@@ -138,6 +139,16 @@ class MyMap extends React.Component {
             });
             local.search(myValue);
         }
+        // 单击地图使输入框失去焦点
+        map.addEventListener('click',(e)=>{
+            ReactDOM.findDOMNode(_this.refs.inputSearch).getElementsByTagName('input')[0].blur();
+        });
+        map.addEventListener('dragend',(e)=>{
+            ReactDOM.findDOMNode(_this.refs.inputSearch).getElementsByTagName('input')[0].blur();
+        });
+        map.addEventListener('touchend',(e)=>{
+            ReactDOM.findDOMNode(_this.refs.inputSearch).getElementsByTagName('input')[0].blur();
+        });
     }
     render() {
         return (
@@ -147,7 +158,7 @@ class MyMap extends React.Component {
                     className={styles.search}
                     id="search"
                     onSearch={value => this.searchLoc(value)}
-                    onPressEnter={value => this.searchLoc(value)}
+                    ref="inputSearch"
                 />
                 <div id="map" className={styles.myMap}></div>
             </div>
