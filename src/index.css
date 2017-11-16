@@ -1,0 +1,10 @@
+html, body, :global(#root) {
+  height: 100%;
+}
+
+/* :global(#root) {
+    width: 100vw;
+    height: 100vh !important;
+    overflow: hidden;
+    box-sizing: border-box;
+} */
